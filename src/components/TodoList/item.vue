@@ -6,7 +6,11 @@
 import { defineComponent } from "@vue/runtime-core";
 
 export default defineComponent({
-  name:'TodoItem'
+  name:'TodoItem',
+
+  setup(){
+    
+  }
 })
 </script>
 

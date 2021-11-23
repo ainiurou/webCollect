@@ -10,16 +10,17 @@
 import store from "@/store";
 import { SET_TODO } from "@/store/actionTypes";
 import { defineComponent, ref } from "@vue/runtime-core";
+import { IUseTodo,useTodo } from "../../hooks"
 
 export default defineComponent({
   name:'TodoInput',
   setup(){
     const todoValue = ref<string>('')
-
+    const { setTodo }:IUseTodo = useTodo();
     const setTodoValue = (e : KeyboardEvent):void =>{
       if (e.key === 'Enter' && todoValue.value.trim().length) {
         //设置数据
-        store.dispatch(SET_TODO,todoValue.value)
+        setTodo(todoValue.value);
         todoValue.value = ''
       }
     }

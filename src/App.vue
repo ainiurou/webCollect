@@ -8,9 +8,10 @@
 <script lang="ts">
 
 
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent, onMounted } from '@vue/runtime-core'
 import TodoInput from './components/TodoInput/index.vue'
 import TodoList from './components/TodoList/index.vue'
+import { IUseTodo, useTodo } from './hooks'
 
 export default defineComponent({
   name: 'App',
@@ -26,6 +27,10 @@ export default defineComponent({
   },
   setup(){
     console.log("---setup---")
+    const { setTodo }:IUseTodo = useTodo();
+    onMounted(()=>{
+      setTodo
+    })
   }
 })
 </script>
