@@ -11,6 +11,9 @@ export default defineComponent({
   name:'TodoList',
   components:{
     TodoItem
+  },
+  setup(){
+    
   }
 })
 </script>
