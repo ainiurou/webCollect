@@ -7,8 +7,6 @@
 </template>
 
 <script lang = "ts">
-import store from "@/store";
-import { SET_TODO } from "@/store/actionTypes";
 import { defineComponent, ref } from "@vue/runtime-core";
 import { IUseTodo,useTodo } from "../../hooks"
 
