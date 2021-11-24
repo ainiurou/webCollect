@@ -1,14 +1,17 @@
 <template>
   <div class="wrapper">
     <todo-input />
-    <todo-list />
+    <todo-list 
+    :todoList="todoList"
+     />
   </div>
 </template>
 
 <script lang="ts">
 
 
-import { defineComponent, onMounted } from '@vue/runtime-core'
+import { computed, defineComponent, onMounted } from '@vue/runtime-core'
+import { Store, useStore } from 'vuex'
 import TodoInput from './components/TodoInput/index.vue'
 import TodoList from './components/TodoList/index.vue'
 import { IUseTodo, useTodo } from './hooks'
@@ -19,18 +22,18 @@ export default defineComponent({
     TodoInput,
     TodoList
   },
-  beforeCreate(){
-    console.log("---beforeCreate---")
-  },
-  created(){
-    console.log("---create---")
-  },
+
   setup(){
-    console.log("---setup---")
-    const { setTodo }:IUseTodo = useTodo();
+    const { setTodoList }: IUseTodo = useTodo();
+    const store:Store<any> = useStore();
+
     onMounted(()=>{
-      setTodo
-    })
+      setTodoList();
+    });
+
+    return {
+      todoList: computed(() => store.state.list)
+    }
   }
 })
 </script>

@@ -4,11 +4,11 @@ import { ITodo, TODO_STATUS } from "@/typings"
 import { Store, useStore } from "vuex"
 
 export interface IUseTodo {
-  setTodo:(value:string)=>void;
-  setTodoList:()=>void;
-  removeTodo:()=>void;
-  setStatus:()=>void;
-  setDoing:()=>void;
+  setTodo:(value:string) => void;
+  setTodoList: () => void;
+  removeTodo: (id:number) => void;
+  setStatus: (id:number) => void;
+  setDoing: (id:number) => void;
 }
 
 interface IUseLocalStorage {
@@ -33,18 +33,21 @@ function useTodo ():IUseTodo {
 
   function setTodoList () {
     const todoList:ITodo[]  = getLocalList();
-    store.dispatch(SET_TODO_LIST,todoList)
+    store.dispatch(SET_TODO_LIST,todoList);
   }
 
-  function removeTodo () {
+  function removeTodo (id:number):void {
+    store.dispatch('REMOVE_TODO',id);
+    setLocalList(store.state.list)
   }
 
-  function setStatus () {
-
+  function setStatus (id:number):void {
+    store.dispatch('SET_STATUS',id);
+    setLocalList(store.state.list)
   }
 
-  function setDoing () {
-
+  function setDoing (id:number):void {
+    store.dispatch('SET_DOING',id);
 
   }
 

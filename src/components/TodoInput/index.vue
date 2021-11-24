@@ -7,7 +7,7 @@
 </template>
 
 <script lang = "ts">
-import { defineComponent, ref } from "@vue/runtime-core";
+import {  defineComponent, ref } from 'vue';
 import { IUseTodo,useTodo } from "../../hooks"
 
 export default defineComponent({
